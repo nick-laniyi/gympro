@@ -52,6 +52,12 @@ This system was built specifically for these requirements.
 - SMS Gateway
 
 ---
+## Documentation
+
+- [Project Overview](_docs/01-overview.md) - Scope, goals, and current status
+- [Database Overview](_docs/02-database-overview.md) - Table structure, relationships, views
+- [Features Overview](_docs/03-features.md) - Detailed breakdown by user role and subscription tier
+- [Technical Challenges](_docs/04-challenges.md) - Problems solved and implementation details
 
 ## Key Features
 

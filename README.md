@@ -1,259 +1,259 @@
+markdown
+# GymCRM - Gym Management SaaS Platform
 
-# GymCRM - Enterprise Gym Management SaaS
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-Showcase-blue)](#)
-[![Status](https://img.shields.io/badge/Status-Production-brightgreen)](#)
-[![Architecture](https://img.shields.io/badge/Architecture-MVC-important)](#)
-[![Database](https://img.shields.io/badge/Database-MySQL-orange)](#)
-
-> **⚠️ IMPORTANT: Portfolio Repository**
-> 
-> This repository contains the **complete file structure** and **database schema** of a production-ready Gym Management System I architected and built. 
-> 
-> **File structure preserved** - Shows organization and architecture  
-> **Database schema preserved** - Shows data relationships
-> **Screenshots included** - Shows actual UI/UX
-> **Business logic removed** - All proprietary code replaced with placeholders
-> 
-> **Interested in the actual implementation?** Contact me for:
-> - Live demo access
-> - Architecture deep-dive
-> - Code review session (NDA required)
+**This repository contains the file structure and database schema of a production gym management system. Source code has been replaced with placeholders for confidentiality.**
 
 ---
 
 ## Project Overview
 
-**GymCRM** is a multi-tenant SaaS platform serving **50+ gyms** across Nigeria. It provides:
+GymCRM is a multi-tenant SaaS platform serving 50+ gyms across Nigeria. It provides gym owners with member management, payment processing, attendance tracking, and a white-labeled member portal.
 
-- **White-labeled portals** - Each gym gets their own branded system
-- **Offline-first architecture** - Works without internet, syncs when online
-- **Multi-payment support** - Paystack, bank transfers, POS, cash
-- **Member self-service** - Members register, pay, and book classes online
-- **Staff management** - Role-based access (admin, trainer, receptionist)
-- **Analytics & reporting** - Revenue, attendance, member retention
-
-**Role**: Lead Developer & System Architect  
-**Timeline**: 8 months (active development)  
-**Tech Stack**: PHP 8.3, MySQL 8.0, JavaScript, PWA, Paystack API
+**Role:** Lead Developer & System Architect  
+**Timeline:** 8 months development  
+**Status:** Production (50+ active gyms, 15,000+ members)
 
 ---
 
-## 📸 Quick Preview
+## Why This Project Matters
 
-| Admin Dashboard | Member Portal | White Label |
-|----------------|---------------|-------------|
-| ![Dashboard](_screenshots/01-dashboard/admin-dashboard.png) | ![Member](_screenshots/01-dashboard/member-portal.png) | ![WhiteLabel](_screenshots/04-white-label/gym-a-portal.png) |
+Most gym software is built for Western markets:
+- Requires constant internet
+- Only supports credit cards
+- Costs $100+ per month
+- No branding options
+
+Nigerian gyms needed something different:
+- Works during internet outages
+- Accepts bank transfers and USSD
+- Affordable pricing
+- Custom branding for each gym
+
+This system was built specifically for these requirements.
 
 ---
 
-## System Architecture
-┌─────────────────────────────────────────────────────────────┐
-│ CLIENT LAYER │
-├─────────────┬───────────────┬───────────────┬───────────────┤
-│ Web App │ PWA App │ Admin Panel │ Member API │
-│ (PHP/JS) │ (Service │ (jQuery/ │ (RESTful) │
-│ │ Worker) │ Bootstrap) │ │
-└─────────────┴───────────────┴───────────────┴───────────────┘
-│
-┌─────────────────────────────────────────────────────────────┐
-│ APPLICATION LAYER │
-├─────────────┬───────────────┬───────────────┬───────────────┤
-│ Auth & │ Payment │ White-Label │ Offline │
-│ Roles │ Processor │ Engine │ Sync │
-├─────────────┼───────────────┼───────────────┼───────────────┤
-│ Member │ Attendance │ Class/ │ Reporting │
-│ Management │ Tracking │ Workout │ Engine │
-└─────────────┴───────────────┴───────────────┴───────────────┘
-│
-┌─────────────────────────────────────────────────────────────┐
-│ DATA LAYER │
-├─────────────────────────────────────────────────────────────┤
-│ MySQL 8.0 Database │
-│ 50+ Tables | Multi-tenant | Optimized Views │
-└─────────────────────────────────────────────────────────────┘
-│
-┌─────────────────────────────────────────────────────────────┐
-│ INTEGRATION LAYER │
-├─────────────┬───────────────┬───────────────┬───────────────┤
-│ Paystack │ NaijaBased │ SMTP/PHP │ SMS Gateway │
-│ Payments │ Directory │ Mailer │ │
-└─────────────┴───────────────┴───────────────┴───────────────┘
+## Technical Stack
 
-text
+**Backend**
+- PHP 8.3
+- MySQL 8.0
+- Apache/Nginx
 
-**[View Full Architecture Documentation](_docs/02-architecture.md)**
+**Frontend**
+- JavaScript (vanilla)
+- Bootstrap 5
+- PWA (Service Workers)
+
+**Integrations**
+- Paystack API
+- NaijaBased Directory
+- PHPMailer
+- SMS Gateway
 
 ---
 
 ## Key Features
 
-### Multi-Tenant Architecture
-- **50+ Gyms** on single instance with complete data isolation
-- **Custom subdomains**: `gymname.gymcrm.com`
-- **Custom domains**: Point your own domain
-- **Tiered subscription**: Free, Core, Portal, Enterprise
+**Multi-Tenant Architecture**
+- Single codebase serving 50+ gyms
+- Complete data isolation between tenants
+- Custom subdomains (gymname.gymcrm.com)
+- Custom domain support
 
-### White-Label Platform
-- **Complete branding control** - Colors, logos, favicons
-- **Hide GymCRM branding** - Optional whitelabel
-- **Custom CSS** - Advanced customization
-- **Email templates** - Branded member communications
+**White-Label Platform**
+- Per-gym branding (colors, logos, favicons)
+- Optional GymCRM branding removal
+- Custom CSS injection
+- Branded email templates
 
-**[View All Features](_docs/03-features.md)**
+**Member Management**
+- Member profiles with photos
+- Membership plans (monthly, quarterly, yearly)
+- Automated expiry notifications
+- Digital ID card generation
+- Attendance check-in/out
+
+**Payment Processing**
+- Paystack integration (cards, transfer, USSD)
+- Manual payment recording
+- Invoice generation
+- Payment history and receipts
+- Webhook verification
+
+**Offline Capability**
+- Service Worker caches static assets
+- Offline data storage with background sync
+- Visual offline indicator
+- Works during internet outages
+
+**Staff Management**
+- Role-based access (admin, trainer, receptionist)
+- Permission controls
+- Staff attendance tracking
+
+**Member Portal (PWA)**
+- Self-service registration
+- Online payments
+- Membership status
+- Attendance history
+- Installable on mobile devices
+
+**Reporting & Analytics**
+- Revenue reports
+- Member growth charts
+- Attendance heatmaps
+- Expiry alerts
+- Export to PDF/Excel
 
 ---
 
-## Database Schema (Preserved)
+## Project Structure
+gym-crm/
+├── admin/ - Gym owner administration panel
+├── api/ - REST API endpoints
+├── app/ - MVC controllers and models
+├── assets/ - CSS, JavaScript, images
+├── cache/ - Offline data storage
+├── config/ - Database and service configuration
+├── database/ - Migration files
+├── includes/ - Core helpers and features
+├── members/ - Member portal (PWA)
+├── payments/ - Paystack integration
+├── public/ - Service worker, manifest
+├── staff/ - Trainer and receptionist panel
+└── *.php - Entry points (logic removed)
 
-The full database schema is available in this repo showing 50+ tables with proper relationships, indexes, and views.
+text
 
-**Key Tables:**
-- `gyms` - Multi-tenant root
-- `members` - Member profiles & memberships
-- `payments` - Transaction history
-- `white_label_settings` - Branding configuration
-- `attendance` - Check-in/out tracking
-- `notifications` - In-app & email notifications
+---
 
-**[View Complete Schema](_docs/04-database-schema.md)**
+## Database Design
+
+The system uses a shared database with tenant isolation via `gym_id` on all tables.
+
+**Core Tables**
+- `gyms` - Tenant root
+- `users` - System users (gym owners, staff)
+- `members` - Member profiles and memberships
+- `payments` - Transaction records
+- `attendance` - Check-in/out logs
+- `white_label_settings` - Per-gym branding
+
+**Supporting Tables**
+- `gym_classes` - Class schedules
+- `equipment` - Inventory tracking
+- `invoices` - Billing records
+- `notifications` - In-app alerts
+- `sms_logs` - Message history
+- `api_keys` - Third-party access
+
+**Views**
+- `active_members_summary`
+- `expiring_memberships`
+- `monthly_revenue`
+- `todays_attendance`
+- `pending_gym_registrations`
+
+Full schema available in the SQL dump included in this repository.
 
 ---
 
 ## Technical Challenges Solved
 
-### **1. Offline-First Architecture**
-**Problem**: Nigerian gyms face frequent internet outages  
-**Solution**: 
-- Service Worker caches static assets
-- IndexedDB for offline data storage
-- Background sync when connection restored
-- Queue system for failed operations
+**1. Offline Operations**
 
-### **2. Dynamic White-Labeling**
-**Problem**: 50+ gyms need unique branding  
-**Solution**:
-- Per-gym CSS generation
-- Dynamic logo injection
-- Custom domain support
-- Database-driven theming
+Internet connectivity in Nigerian gyms is unreliable. Members need to check in and payments need to be recorded regardless of connection status.
 
-### **3. Multi-Gateway Payments**
-**Problem**: Members have different payment preferences  
-**Solution**:
-- Paystack integration (cards, transfer, USSD)
-- Manual payment tracking
-- Auto-expiring memberships
-- Webhook verification
+The solution uses Service Workers to cache the application shell. Offline actions are stored as JSON files and processed in sequence when connection is restored. A visual indicator shows offline status. This handles hundreds of daily offline transactions.
 
-**[View All Challenges & Solutions](_docs/05-challenges.md)**
+**2. Multi-Tenant Branding**
+
+Each gym needed their own look while sharing the same codebase. Storing CSS values per-gym in the database and injecting them at runtime solved this. No file system writes, instant activation, and easy backup. Custom domain support required additional DNS configuration guidance for gym owners.
+
+**3. Payment Verification**
+
+Paystack webhooks needed reliable processing. The system verifies webhook signatures, idempotency keys prevent duplicates, and failed webhooks are logged for manual reconciliation. Membership expiry dates update automatically upon successful payment.
+
+**4. Member Self-Registration**
+
+Gyms wanted members to register online without visiting the facility. The solution includes a multi-step registration form, email verification, and admin approval workflow. Optional auto-approval for trusted gyms.
+
+**5. Performance at Scale**
+
+Fifty gyms with 15,000 members required query optimization. Strategic indexes on foreign keys and frequently queried columns reduced query time. Database views simplified complex reporting queries. Caching of white-label CSS reduced database lookups.
 
 ---
 
-## Real-World Impact
+## Production Metrics
 
-| Metric | Achievement |
-|--------|------------|
-|  **Active Gyms** | 50+ |
-|  **Total Members** | 15,000+ |
-|  **Processed Payments** | ₦50M+ |
-|  **PWA Installs** | 2,000+ |
-|  **Offline Sessions** | 500+ daily |
-
----
-
-## 🔧 Technical Stack
-├── Backend
-│ ├── PHP 8.3 - Core application logic
-│ ├── MySQL 8.0 - Database with views & triggers
-│ └── Apache/Nginx - Web server
-│
-├── Frontend
-│ ├── JavaScript (Vanilla) - No heavy frameworks
-│ ├── Bootstrap 5 - Responsive UI
-│ ├── PWA - Service Workers, Manifest
-│ └── Chart.js - Analytics visualizations
-│
-├── Integrations
-│ ├── Paystack API - Payment processing
-│ ├── NaijaBased API - Business directory
-│ ├── PHPMailer - Email delivery
-│ └── SMS Gateway - Text notifications
-│
-└── DevOps
-├── Git - Version control
-├── Composer - Dependency management
-└── cPanel/Shared Hosting - Deployment
-
-text
+- **50+** active gyms
+- **15,000+** registered members
+- **₦50M+** payment volume processed
+- **2,000+** PWA installs
+- **500+** daily offline check-ins
+- **Zero** reported data loss incidents
 
 ---
 
-##  Project Structure (Preserved)
-gym-crm
-┣ 📂admin - Complete gym owner/admin panel
-┣ 📂api - RESTful API endpoints (v1, white-label)
-┣ 📂app - MVC architecture (Controllers, Models)
-┣ 📂assets - CSS, JS, Images, Uploads
-┣ 📂config - Database, constants, services
-┣ 📂database - Migration files
-┣ 📂includes - Core helpers, features, middleware
-┣ 📂members - Member portal (PWA)
-┣ 📂payments - Paystack integration
-┣ 📂staff - Staff management interface
-┗ 📜*.php - 100+ entry points (logic removed)
+## Screenshots
 
-text
+Screenshots are organized in the `_screenshots/` directory:
 
-**[Browse Full Structure](/)**
+- **Dashboard** - Admin overview, gym owner dashboard, staff view
+- **Member Management** - Member lists, profiles, ID cards
+- **Payments** - Checkout, history, invoices
+- **White Label** - Branding settings, branded portals
+- **Offline Mode** - Offline indicator, sync queue
+- **Reports** - Charts, exports
+- **Mobile** - PWA on mobile devices
+
+
+## Screenshots
+
+| Dashboard | Member Management | Payments |
+|-----------|-------------------|----------|
+| [![Dashboard](_screenshots/01-dashboard/admin-dashboard.png)](_screenshots/01-dashboard/) | [![Members](_screenshots/02-member-management/member-list.png)](_screenshots/02-member-management/) | [![Payments](_screenshots/03-payments/payment-page.png)](_screenshots/03-payments/) |
+
+| White Label | Offline Mode | Reports |
+|-------------|--------------|---------|
+| [![White Label](_screenshots/04-white-label/branding-settings.png)](_screenshots/04-white-label/) | [![Offline](_screenshots/05-offline-mode/offline-indicator.png)](_screenshots/05-offline-mode/) | [![Reports](_screenshots/06-analytics-reports/revenue-report.png)](_screenshots/06-analytics-reports/) |
+
+### Full Galleries
+
+- [Dashboard Views](_screenshots/01-dashboard/) - Admin, gym owner, staff dashboards
+- [Member Management](_screenshots/02-member-management/) - Member lists, profiles, ID cards
+- [Payments](_screenshots/03-payments/) - Checkout, history, invoices
+- [White Label](_screenshots/04-white-label/) - Branding settings, branded portals
+- [Offline Mode](_screenshots/05-offline-mode/) - Offline indicator, sync queue
+- [Analytics & Reports](_screenshots/06-analytics-reports/) - Charts, exports
+- [Classes & Workouts](_screenshots/07-classes-workouts/) - Schedules, workout plans
+- [SMS & Email](_screenshots/08-sms-email/) - Templates, composer
+- [Settings](_screenshots/09-settings/) - Gym profile, staff, API
+- [Mobile](_screenshots/10-mobile/) - PWA on mobile devices
+---
+
+## Repository Purpose
+
+This repository exists to demonstrate:
+
+1. **Project scope and complexity** - 100+ files, 50+ database tables
+2. **Architecture decisions** - Multi-tenant, offline-first, white-label
+3. **Problem-solving approach** - Solutions for real market constraints
+4. **Code organization** - Clean separation of concerns
+5. **Technical capability** - Full-stack development without frameworks
+
+The actual source code is proprietary and maintained in a private repository.
 
 ---
 
-## Screenshot Gallery
+## Contact
 
-| Section | Preview |
-|--------|---------|
-| **Dashboard** | [View Gallery](_screenshots/01-dashboard/) |
-| **Member Management** | [View Gallery](_screenshots/02-member-management/) |
-| **Payments** | [View Gallery](_screenshots/03-payments/) |
-| **White Label** | [View Gallery](_screenshots/04-white-label/) |
-| **Offline Mode** | [View Gallery](_screenshots/05-offline-mode/) |
-| **Analytics** | [View Gallery](_screenshots/06-analytics-reports/) |
+For live demo access or architecture discussion:
+- Email: [nicklaniyi@gmail.com]
+- LinkedIn: [https://www.linkedin.com/in/nicklaniyi/]
+- Portfolio: [https://www.naijabased.fun/nick-laniyi]
 
 ---
 
-## Getting Started (For Portfolio Review)
-
-This repository is for **portfolio and demonstration purposes only**.
-
-**To review this project:**
-1. Browse the file structure to understand organization
-2. Review the database schema in the SQL dump
-3. View screenshots to see UI/UX
-4. Read documentation for architecture decisions
-
-**For live demo or code review:**
-- Email: nicklaniyi@gmail.com
-- LinkedIn: https://www.linkedin.com/in/nicklaniyi/
-- Portfolio: https://www.naijabased.fun/nick-laniyi
-
----
-
-## License
-
-This repository contains **proprietary code** replaced with placeholders.  
-No license granted for use, reproduction, or distribution.
-
-© 2024 [Your Name]. All rights reserved.
-
----
-
-## Acknowledgments
-
-- **Paystack** - Payment infrastructure
-- **NaijaBased** - Business directory partnership
-- **All 50+ gym owners** - Early adopters and feedback
-
----
-
-**If you're impressed by what you see, let's connect!** 
+© 2024 [Nicholas Olaniyi]. All rights reserved.

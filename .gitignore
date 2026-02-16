@@ -1,0 +1,24 @@
+# Ignore everything
+*
+
+# Except these directories and files
+!README.md
+!_docs/
+!_screenshots/
+!_docs/**
+!_screenshots/**
+!*.md
+
+# But ignore everything inside _docs and _screenshots except md and images
+_docs/**/*.php
+_docs/**/*.html
+_docs/**/*.js
+_docs/**/*.css
+_screenshots/**/*.php
+_screenshots/**/*.html
+_screenshots/**/*.js
+_screenshots/**/*.css
+
+# Keep git directory
+!.gitignore
+!.git/
